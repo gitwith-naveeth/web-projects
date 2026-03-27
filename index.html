@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Naveeth | ECE Engineer</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Segoe UI',sans-serif;background:#050508;color:#e8e8f0;scroll-behavior:smooth;}
+
+    .navbar{display:flex;justify-content:space-between;align-items:center;padding:16px 40px;border-bottom:1px solid rgba(255,255,255,0.05);background:rgba(5,5,8,0.85);backdrop-filter:blur(12px);position:sticky;top:0;z-index:100;}
+    .logo{font-size:1.1rem;font-weight:800;color:#fff;}
+    .logo span{color:#a78bfa;}
+    .nav-links{display:flex;gap:28px;align-items:center;}
+    .nav-links a{color:#666;text-decoration:none;font-size:0.8rem;letter-spacing:1.5px;text-transform:uppercase;transition:color 0.2s;}
+    .nav-links a:hover{color:#a78bfa;}
+    .nav-cta{background:#7c3aed;color:#fff !important;padding:7px 18px;border-radius:6px;}
+    .nav-cta:hover{background:#6d28d9 !important;}
+
+    .hero-wrap{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:100px 24px 80px;overflow:hidden;}
+    .smoke-bg{position:absolute;inset:0;z-index:0;}
+    .smoke-bg canvas{width:100%;height:100%;display:block;}
+    .hero-content{position:relative;z-index:2;}
+    .chip{display:inline-flex;align-items:center;gap:6px;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:#c8b8f8;border:1px solid rgba(180,150,255,0.25);background:rgba(120,80,220,0.12);padding:5px 14px;border-radius:20px;margin-bottom:26px;}
+    .dot{width:6px;height:6px;border-radius:50%;background:#a78bfa;display:inline-block;animation:pulse 2s infinite;}
+    @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+    .hero-content h1{font-size:4.5rem;font-weight:800;color:#fff;line-height:1.05;letter-spacing:-2px;margin-bottom:16px;}
+    .hero-content h1 em{font-style:normal;color:#a78bfa;}
+    .hero-content p{color:#7070a0;font-size:1rem;max-width:440px;margin:0 auto 32px;line-height:1.75;}
+    .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+    .btn-glass{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#ccc;padding:12px 28px;border-radius:8px;font-size:0.9rem;cursor:pointer;transition:background 0.2s;}
+    .btn-solid{background:#7c3aed;border:none;color:#fff;padding:12px 28px;border-radius:8px;font-size:0.9rem;cursor:pointer;font-weight:600;transition:background 0.2s;}
+    .btn-solid:hover{background:#6d28d9;}
+    .btn-glass:hover{background:rgba(255,255,255,0.11);}
+
+    .divider{border:none;border-top:1px solid #0d0d18;}
+    .section{padding:80px 40px;max-width:960px;margin:0 auto;}
+    .eyebrow{font-size:0.68rem;letter-spacing:3px;text-transform:uppercase;color:#6d4bbf;margin-bottom:8px;}
+    .section-h{font-size:1.9rem;font-weight:700;color:#fff;margin-bottom:36px;}
+
+    /* ABOUT */
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start;}
+    .about-text p{color:#60607a;font-size:0.92rem;line-height:1.85;margin-bottom:14px;}
+    .about-text p span{color:#a88cf5;}
+    .stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .stat{background:#06060f;border:1px solid #13132a;border-radius:10px;padding:18px 20px;}
+    .stat-num{font-size:2rem;font-weight:800;color:#a78bfa;}
+    .stat-label{font-size:0.74rem;color:#404058;margin-top:4px;letter-spacing:0.5px;}
+
+    /* SKILLS */
+    .skills-wrap{display:flex;flex-wrap:wrap;gap:10px;}
+    .skill{font-size:0.79rem;padding:7px 16px;border-radius:6px;border:1px solid #18182e;color:#9090b8;background:#070712;}
+
+    /* PROJECTS */
+    .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;}
+    .pcard{border:1px solid #11112a;border-radius:12px;padding:22px;background:#040410;transition:border-color 0.25s,transform 0.2s;}
+    .pcard:hover{border-color:#7c3aed;transform:translateY(-3px);}
+    .pcard-top{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+    .pcard-icon{width:36px;height:36px;border-radius:8px;background:#0f0a20;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+    .pcard h3{color:#ddd8f5;font-size:0.93rem;font-weight:600;}
+    .pcard p{color:#40405a;font-size:0.82rem;line-height:1.6;}
+    .ptag{display:inline-block;margin-top:12px;font-size:0.7rem;color:#9d78f5;background:#0a0718;border:1px solid #20103a;padding:3px 10px;border-radius:4px;}
+
+    /* CONTACT */
+    .contact-box{background:#04040e;border:1px solid #11112a;border-radius:14px;padding:50px 40px;text-align:center;}
+    .contact-box p{color:#404058;font-size:0.9rem;margin:12px 0 28px;}
+    .links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+    .link-pill{color:#9070e8;border:1px solid #160e2a;background:#060412;padding:10px 22px;border-radius:8px;font-size:0.82rem;text-decoration:none;transition:border-color 0.2s,color 0.2s;}
+    .link-pill:hover{border-color:#7c3aed;color:#c4a8ff;}
+
+    footer{text-align:center;padding:30px;color:#202030;font-size:0.76rem;border-top:1px solid #0d0d18;}
+
+    @media(max-width:600px){
+      .hero-content h1{font-size:2.8rem;}
+      .about-grid{grid-template-columns:1fr;}
+      .section{padding:60px 20px;}
+      .navbar{padding:14px 20px;}
+      .nav-links{gap:16px;}
+      .contact-box{padding:32px 20px;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">N<span>.</span></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact" class="nav-cta">Hire Me</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero-wrap">
+  <div class="smoke-bg"><canvas id="smokeCanvas"></canvas></div>
+  <div class="hero-content">
+    <div class="chip"><span class="dot"></span> Available for internships · Chennai</div>
+    <h1>Hi, I'm<br><em>Naveeth</em></h1>
+    <p>2nd year ECE engineer turning schematics into reality — embedded systems, PCB design & machine learning.</p>
+    <div class="cta-row">
+      <button class="btn-solid" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View My Work</button>
+      <button class="btn-glass">Download CV</button>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- ABOUT -->
+<div class="section" id="about">
+  <div class="eyebrow">Who I am</div>
+  <div class="section-h">About Me</div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a <span>2nd-year ECE student</span> based in Chennai, passionate about making electronics do cool (and occasionally reckless) things.</p>
+      <p>My focus spans <span>analog & digital electronics</span>, embedded systems, PCB design, signal processing, and machine learning — all building towards my first internship.</p>
+      <p>Outside the lab: photography, music, cooking, reading, and aggressively tracking every gym session on Hevy.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="stat-num">2nd</div><div class="stat-label">Year ECE</div></div>
+      <div class="stat"><div class="stat-num">5+</div><div class="stat-label">Projects Built</div></div>
+      <div class="stat"><div class="stat-num">3+</div><div class="stat-label">Languages</div></div>
+      <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Caffeine Consumed</div></div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- SKILLS -->
+<div class="section" id="skills">
+  <div class="eyebrow">What I work with</div>
+  <div class="section-h">Skills</div>
+  <div class="skills-wrap">
+    <span class="skill">Embedded C</span>
+    <span class="skill">Circuit Design</span>
+    <span class="skill">PCB Design · KiCad</span>
+    <span class="skill">Signal Processing</span>
+    <span class="skill">Python</span>
+    <span class="skill">Machine Learning</span>
+    <span class="skill">Arduino</span>
+    <span class="skill">MATLAB</span>
+    <span class="skill">Analog Electronics</span>
+    <span class="skill">Digital Electronics</span>
+    <span class="skill">Git</span>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- PROJECTS -->
+<div class="section" id="projects">
+  <div class="eyebrow">What I've built</div>
+  <div class="section-h">Projects</div>
+  <div class="projects">
+    <div class="pcard">
+      <div class="pcard-top"><div class="pcard-icon">⚡</div><h3>Project One</h3></div>
+      <p>What you built, the problem it solved, and what makes it interesting.</p>
+      <span class="ptag">Embedded C</span>
+    </div>
+    <div class="pcard">
+      <div class="pcard-top"><div class="pcard-icon">📡</div><h3>Project Two</h3></div>
+      <p>What you built, the problem it solved, and what makes it interesting.</p>
+      <span class="ptag">PCB Design</span>
+    </div>
+    <div class="pcard">
+      <div class="pcard-top"><div class="pcard-icon">🤖</div><h3>Project Three</h3></div>
+      <p>What you built, the problem it solved, and what makes it interesting.</p>
+      <span class="ptag">Python · ML</span>
+    </div>
+    <div class="pcard">
+      <div class="pcard-top"><div class="pcard-icon">🔌</div><h3>Project Four</h3></div>
+      <p>What you built, the problem it solved, and what makes it interesting.</p>
+      <span class="ptag">Arduino</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- CONTACT -->
+<div class="section" id="contact">
+  <div class="contact-box">
+    <div class="eyebrow">Get in touch</div>
+    <h2 style="color:#fff;font-size:1.8rem;font-weight:800;margin-top:10px;letter-spacing:-0.5px;">Let's build something.</h2>
+    <p>Open to internships, collabs, and interesting conversations about hardware or AI.</p>
+    <div class="links">
+      <a class="link-pill" href="mailto:your@email.com">✉ your@email.com</a>
+      <a class="link-pill" href="https://linkedin.com/in/yourprofile">LinkedIn</a>
+      <a class="link-pill" href="https://github.com/yourusername">GitHub</a>
+    </div>
+  </div>
+</div>
+
+<footer>Built by Naveeth · 2025 · Chennai</footer>
+
+<!-- WEBGL SMOKE -->
+<script>
+(function(){
+  const canvas=document.getElementById('smokeCanvas');
+  const gl=canvas.getContext('webgl2');
+  if(!gl)return;
+  function resize(){const dpr=Math.min(window.devicePixelRatio||1,2);canvas.width=canvas.offsetWidth*dpr;canvas.height=canvas.offsetHeight*dpr;gl.viewport(0,0,canvas.width,canvas.height);}
+  resize();window.addEventListener('resize',resize);
+  function sh(type,src){const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);return s;}
+  const vs=sh(gl.VERTEX_SHADER,`#version 300 es\nprecision highp float;\nin vec4 position;\nvoid main(){gl_Position=position;}`);
+  const fs=sh(gl.FRAGMENT_SHADER,`#version 300 es
+precision highp float;out vec4 O;
+uniform float time;uniform vec2 resolution;uniform vec3 u_color;
+#define FC gl_FragCoord.xy
+#define R resolution
+#define T (time+660.)
+float rnd(vec2 p){p=fract(p*vec2(12.9898,78.233));p+=dot(p,p+34.56);return fract(p.x*p.y);}
+float noise(vec2 p){vec2 i=floor(p),f=fract(p),u=f*f*(3.-2.*f);return mix(mix(rnd(i),rnd(i+vec2(1,0)),u.x),mix(rnd(i+vec2(0,1)),rnd(i+1.),u.x),u.y);}
+float fbm(vec2 p){float t=.0,a=1.;for(int i=0;i<5;i++){t+=a*noise(p);p*=mat2(1,-1.2,.2,1.2)*2.;a*=.5;}return t;}
+void main(){
+  vec2 uv=(FC-.5*R)/R.y;vec3 col=vec3(1);
+  uv.x+=.25;uv*=vec2(2,1);
+  float n=fbm(uv*.28-vec2(T*.01,0));n=noise(uv*3.+n*2.);
+  col.r-=fbm(uv+vec2(0,T*.015)+n);
+  col.g-=fbm(uv*1.003+vec2(0,T*.015)+n+.003);
+  col.b-=fbm(uv*1.006+vec2(0,T*.015)+n+.006);
+  col=mix(col,u_color,dot(col,vec3(.21,.71,.07)));
+  col=mix(vec3(.03,.02,.06),col,min(time*.08,1.));
+  col=clamp(col,.03,1.);O=vec4(col,1);
+}`);
+  const prog=gl.createProgram();
+  gl.attachShader(prog,vs);gl.attachShader(prog,fs);gl.linkProgram(prog);
+  const buf=gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,1,-1,-1,1,1,1,-1]),gl.STATIC_DRAW);
+  const pos=gl.getAttribLocation(prog,'position');
+  gl.enableVertexAttribArray(pos);gl.vertexAttribPointer(pos,2,gl.FLOAT,false,0,0);
+  const uR=gl.getUniformLocation(prog,'resolution');
+  const uT=gl.getUniformLocation(prog,'time');
+  const uC=gl.getUniformLocation(prog,'u_color');
+  function loop(now){gl.useProgram(prog);gl.uniform2f(uR,canvas.width,canvas.height);gl.uniform1f(uT,now*1e-3);gl.uniform3fv(uC,[0.48,0.22,0.90]);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);requestAnimationFrame(loop);}
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
